@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the Test Suites for Generative AI Prompt Testing project! This repository offers a comprehensive testing framework designed to evaluate the performance and behavior of various Generative AI models using prompt-based test cases. By supporting multiple AI clients—including Ollama, OpenAI, and Anthropic—this project provides a unified approach to testing, ensuring consistency and reliability across different models and platforms.
+Welcome to the Test Suites for Generative AI Prompt Testing project! This repository offers a comprehensive testing framework designed to evaluate the performance and behavior of various Generative AI models using prompt-based test cases. By supporting multiple AI clients—including Ollama, OpenAI, Anthropic, and Amazon Bedrock—this project provides a unified approach to testing, ensuring consistency and reliability across different models and platforms.
 
 
 # Motivation
@@ -15,6 +15,12 @@ This project was created to address these challenges by:
 
 - **Providing a Systematic Testing Framework:** Automate the evaluation of AI model outputs against expected results.
 - **Supporting Multiple AI Clients:** Facilitate testing across different AI models and APIs without the need for separate testing tools.
+    - **Supported AI Clients**:
+        - [Ollama](https://ollama.com/)
+        - [OpenAI](https://openai.com/index/openai-api/)
+        - [Anthropic](https://www.anthropic.com/api)
+        - [Amazon Bedrock](https://docs.aws.amazon.com/bedrock/)
+    - Support for **more AI Clients to come**. If you like support for any AI API endpoints, please put in a **Feature Request** on GitHub
 - **Enhancing Model Reliability:** Identify inconsistencies, biases, or unwanted behaviors in AI model responses.
 - **Streamlining Development Workflow:** Integrate testing into the development pipeline, promoting best practices in AI model deployment.
 
@@ -56,7 +62,52 @@ ANTHROPIC_API_KEY="Your-Anthropic-api-key-here"
 
 
 ## Step 3: Define models and test cases
-Edit the `config.yaml` file for your Models and Test Cases
+Edit the `config.yaml` file for your Models and Test Cases.
+
+`config.yaml` is self explainatory. There are two sections for the **API Clients** and **Test Cases**.
+
+### API Clients
+- `model`: Name of the AI Model
+- `type`: Type of API Client, currently supporting:
+    - `ollama`: Ollama API
+    - `openai`: OpenAI (ChatGPT) API
+    - `anthropic`: Anthropic (Claude) API
+    - `bedrock`: Amazon Bedrock
+- `max_tokens`: Maximum Tokens
+- `temperature`: Temperature
+- `system_prompt`: Optional System Prompt
+- `disabled`: If `true` will exclude this client
+
+#### Example
+```yaml
+clients:
+  # Anthropic Claude 3 Haiko model
+  - model: claude-3-haiku-20240307
+    type: anthropic
+    max_tokens: 1000
+    temperature: 0
+    system_prompt: You are Claude 3 Haiku, an AI assistant.
+    disabled: false
+```
+
+### Test Cases
+- `name`: The name of the Test Case
+- `prompt`: User prompt for the Test Case
+- `expected_substrings`: Expected text in the response
+- `forbidden_substrings`: Forbidden text in the response
+
+#### Example
+```yaml
+test_cases:
+  - name: "Strawberry test"
+    prompt: "Count how many Rs are there in the word straberry"
+    expected_substrings:
+      - three
+      - "3"
+    forbidden_substrings:
+      - two
+      - "2"      
+```
 
 
 ## Step 4: Install required packages

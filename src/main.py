@@ -7,10 +7,6 @@ from config import Config
 if __name__ == "__main__":
     load_dotenv()
 
-    print(os.environ.get("OLLAMA_API_URL"))
-    print(os.environ.get("OPENAI_API_KEY"))
-    print(os.environ.get("ANTHROPIC_API_KEY"))
-
     try:
         cfg = Config()
         exit_code = 0

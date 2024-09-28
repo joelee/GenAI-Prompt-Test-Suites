@@ -3,6 +3,8 @@ import pytest
 from anthropic import Anthropic
 import openai
 import requests
+import boto3
+import json
 
 
 class Client:
@@ -52,6 +54,9 @@ class Client:
             "temperature": self.params.get("temperature", 0.0)
         }
         if self.params.get("prompt_only", False):
+            system_prompt = self.params.get("system_prompt")
+            if system_prompt:
+                prompt = f"{system_prompt}.\n{prompt}"
             kwargs["prompt"] = prompt
         else:
             system_prompt = self.params.get("system_prompt", "You are an AI assistant.")
@@ -81,3 +86,30 @@ class Client:
         )
         return message.content
         
+    def bedrock(self, prompt):
+        bedrock_runtime = boto3.client('bedrock-runtime')
+
+        system_prompt = self.params.get("system_prompt")
+        if system_prompt:
+            prompt = f"{system_prompt}.\n{prompt}"
+
+        # Prepare the request body
+        request_body = {
+            "prompt": prompt,
+            "max_tokens": self.params.get("max_tokens", 100),
+            "temperature": self.params.get("temperature", 0),
+            "top_p": self.params.get("top_p", 0.95),
+        }
+
+        body = json.dumps(request_body)
+
+        response = bedrock_runtime.invoke_model(
+            modelId=self.model,
+            contentType="application/json",
+            accept="application/json",
+            body=body
+        )
+
+        # Parse and return the response
+        response_body = json.loads(response['body'].read())
+        return response_body['completion']

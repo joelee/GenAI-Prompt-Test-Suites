@@ -1,19 +1,27 @@
 # config.yaml
 
+# AI Clients
 clients:
+  # Llama2 model running on Ollama
   - model: llama2
     type: ollama
+
+  # OpenAI Text Davinci model
   - model: text-davinci-003
     type: openai
     max_tokens: 100
     temperature: 0.0
     prompt_only: true
+
+  # OpenAI GPT 3.5 Turbo model
   - model: gpt-3.5-turbo
     type: openai
     max_tokens: 100
     temperature: 0.0
     system_prompt: You are ChatGPT, an AI assistant.
     disabled: true
+
+  # Anthropic Claude 3 Haiko model
   - model: claude-3-haiku-20240307
     type: anthropic
     max_tokens: 1000
@@ -21,6 +29,14 @@ clients:
     system_prompt: You are Claude 3 Haiku, an AI assistant.
     disabled: true
 
+  # Amazon Bedrock - Mistral 7B model
+  - model: mistral.mistral-7b-instruct-v0:2
+    type: bedrock
+    max_tokens: 500
+    temperature: 0.7
+    top_p: 0.95
+
+# Define your Test Cases here...
 test_cases:
   - name: "Capital of Malaysia"
     prompt: "What is the capital of Malaysia?"
