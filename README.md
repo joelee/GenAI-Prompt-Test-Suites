@@ -20,7 +20,7 @@ This project was created to address these challenges by:
         - [OpenAI](https://openai.com/index/openai-api/)
         - [Anthropic](https://www.anthropic.com/api)
         - [Amazon Bedrock](https://docs.aws.amazon.com/bedrock/)
-    - Support for **more AI Clients to come**. If you like support for any AI API endpoints, please put in a **Feature Request** on GitHub
+    - Support for **more AI Clients to come**. If you like support for any AI API endpoints, please put in a [**Feature Request**](https://github.com/joelee/GenAI-Prompt-Test-Suites/issues/new) on GitHub
 - **Enhancing Model Reliability:** Identify inconsistencies, biases, or unwanted behaviors in AI model responses.
 - **Streamlining Development Workflow:** Integrate testing into the development pipeline, promoting best practices in AI model deployment.
 
@@ -39,8 +39,7 @@ Whether you're developing a new AI application or maintaining an existing one, t
     - [Ollama](https://ollama.com/) installed and running
     - Access to [OpenAI](https://openai.com/index/openai-api/) API Key
     - Access to [Anthropic](https://www.anthropic.com/api) API Key
-
-> If you like support for other API endpoints, please put in a **Feature Request** on GitHub
+    - AWS CLI set up to use [Amazon Bedrock](https://docs.aws.amazon.com/bedrock/)
 
 
 ## Step 1: Clone the repo from GitHub
