@@ -1,13 +1,3 @@
-# GenAI-Prompt-Test-Suites
-Test Suites for GenAI Prompt 
-Support for Multiple API endpoint from: 
-- [Ollama](https://ollama.com/)
-- [OpenAI](https://openai.com/index/openai-api/)
-- [Anthropic](https://www.anthropic.com/api)
-
-> If you like support for other API endpoints, please put in a **Feature Request** on GitHub
-
-
 # Introduction
 
 Welcome to the Test Suites for Generative AI Prompt Testing project! This repository offers a comprehensive testing framework designed to evaluate the performance and behavior of various Generative AI models using prompt-based test cases. By supporting multiple AI clients—including Ollama, OpenAI, and Anthropic—this project provides a unified approach to testing, ensuring consistency and reliability across different models and platforms.
@@ -39,6 +29,12 @@ Whether you're developing a new AI application or maintaining an existing one, t
 ## Pre-requisites
 - Python 3.12.x
 - PIP or Poetry package manager
+- Access to at least one API enpoint:
+    - [Ollama](https://ollama.com/) installed and running
+    - Access to [OpenAI](https://openai.com/index/openai-api/) API Key
+    - Access to [Anthropic](https://www.anthropic.com/api) API Key
+
+> If you like support for other API endpoints, please put in a **Feature Request** on GitHub
 
 
 ## API keys in `.env` file
