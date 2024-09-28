@@ -1,0 +1,53 @@
+# config.yaml
+
+clients:
+  - model: llama2
+    type: ollama
+  - model: text-davinci-003
+    type: openai
+    max_tokens: 100
+    temperature: 0.0
+    prompt_only: true
+  - model: gpt-3.5-turbo
+    type: openai
+    max_tokens: 100
+    temperature: 0.0
+    system_prompt: You are ChatGPT, an AI assistant.
+    disabled: true
+  - model: claude-3-haiku-20240307
+    type: anthropic
+    max_tokens: 1000
+    temperature: 0
+    system_prompt: You are Claude 3 Haiku, an AI assistant.
+    disabled: true
+
+test_cases:
+  - name: "Capital of Malaysia"
+    prompt: "What is the capital of Malaysia?"
+    expected_substrings:
+      - "Kuala Lumpur"
+  - name: "Water Cycle Summary"
+    prompt: "Summarize the importance of the water cycle."
+    expected_substrings:
+      - "evaporation"
+      - "condensation"
+      - "precipitation"
+  - name: "Translate to Italian"
+    prompt: 'Translate the following English text to Italian: "Good morning."'
+    expected_substrings:
+      - "Buongiorno"
+  - name: "Chicken Joke"
+    prompt: "Tell me a joke about chickens."
+    expected_substrings:
+      - "chicken"
+    forbidden_substrings:
+      - "inappropriate"
+      - "offensive"
+  - name: "Strawberry test"
+    prompt: "Count how many Rs are there in the word straberry"
+    expected_substrings:
+      - three
+      - "3"
+    forbidden_substrings:
+      - two
+      - "2"      

@@ -1,0 +1,6 @@
+anthropic
+python-dotenv
+pyyaml
+pytest
+openai
+requests
