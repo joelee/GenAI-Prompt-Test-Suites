@@ -23,7 +23,7 @@ By leveraging this testing suite, developers and researchers can ensure that the
 Whether you're developing a new AI application or maintaining an existing one, this project aims to make the testing process more efficient and effective. We welcome contributions and feedback from the community to improve and expand this testing framework.
 
 
-# Setting Up
+# User Guide
 
 
 ## Pre-requisites
@@ -37,7 +37,12 @@ Whether you're developing a new AI application or maintaining an existing one, t
 > If you like support for other API endpoints, please put in a **Feature Request** on GitHub
 
 
-## API keys in `.env` file
+## Step 1: Clone the repo from GitHub
+```bash
+git clone https://github.com/joelee/GenAI-Prompt-Test-Suites.git
+```
+
+## Step 2: Update the API keys in `.env` file
 
 Create a `.env` file, example below:
 
@@ -50,11 +55,11 @@ ANTHROPIC_API_KEY="Your-Anthropic-api-key-here"
 > See `.env.sample` file for example
 
 
-## Define models and test cases
+## Step 3: Define models and test cases
 Edit the `config.yaml` file for your Models and Test Cases
 
 
-## Install required packages
+## Step 4: Install required packages
 
 ### PIP
 ```bash
@@ -66,15 +71,15 @@ pip install -r requirements.txt
 poetry install
 ```
 
-# Run tests
+## Step 5: Run tests
 
 
-## PIP
+### PIP
 ```bash
 python src/main.py
 ```
 
-## Poetry
+### Poetry
 ```bash
 poetry run
 ```
