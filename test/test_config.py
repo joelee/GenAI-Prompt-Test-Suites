@@ -13,4 +13,4 @@ def test_config_cases():
     for client in cfg.cases:
         assert client.name
         assert client.prompt
-        assert client.expected_substrings
+        assert client.expected

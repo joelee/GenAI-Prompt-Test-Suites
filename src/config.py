@@ -1,12 +1,15 @@
-from os import path
+from os import environ, path
 
 import yaml
 from case import Case
 from client import Client
 
+GENAI_TEST_CONFIG_FILE = environ.get("GENAI_TEST_CONFIG_FILE")
+
 
 class Config:
-    def __init__(self, file_path=None):
+    def __init__(self):
+        file_path = GENAI_TEST_CONFIG_FILE
         if file_path is None:
             file_path = path.join(
                 path.dirname(path.realpath(__file__)), "..", "config.yaml"
