@@ -40,30 +40,41 @@ clients:
 test_cases:
   - name: "Capital of Malaysia"
     prompt: "What is the capital of Malaysia?"
-    expected_substrings:
-      - "Kuala Lumpur"
+    expected:
+      - type: substring
+        value: Kuala Lumpur
   - name: "Water Cycle Summary"
     prompt: "Summarize the importance of the water cycle."
-    expected_substrings:
-      - "evaporation"
-      - "condensation"
-      - "precipitation"
+    expected:
+      - type: word
+        value:
+          - "evaporation"
+          - "condensation"
+          - "precipitation"
   - name: "Translate to Italian"
     prompt: 'Translate the following English text to Italian: "Good morning."'
-    expected_substrings:
-      - "Buongiorno"
+    expected:
+      - type: word
+        value: "Buongiorno"
   - name: "Chicken Joke"
     prompt: "Tell me a joke about chickens."
-    expected_substrings:
-      - "chicken"
-    forbidden_substrings:
-      - "inappropriate"
-      - "offensive"
+    expected:
+      - type: substring
+        value: "chicken"
+    forbidden:
+      - type: substring
+        value:
+          - "inappropriate"
+          - "offensive"
   - name: "Strawberry test"
     prompt: "Count how many Rs are there in the word straberry"
-    expected_substrings:
-      - three
-      - "3"
-    forbidden_substrings:
-      - two
-      - "2"      
+    expected:
+      - type: word
+        value:
+          - three
+          - "3"
+    forbidden:
+      - type: word
+        value:
+          - two
+          - "2"

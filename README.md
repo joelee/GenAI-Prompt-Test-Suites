@@ -105,7 +105,7 @@ test_cases:
       - "3"
     forbidden_substrings:
       - two
-      - "2"      
+      - "2"
 ```
 
 
@@ -133,4 +133,3 @@ python src/main.py
 ```bash
 poetry run
 ```
-
