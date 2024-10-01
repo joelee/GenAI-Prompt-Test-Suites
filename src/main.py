@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
                 # Iterate over all test cases
                 for case in cfg.cases:
-                    print(f'Test Case "{case.name}":')
+                    print(f'Test Case "{case.name}": ')
                     response = client.request(case.prompt)
 
                     # Testing Expected cases
@@ -31,7 +31,7 @@ if __name__ == "__main__":
                         if test_def.validate(response):
                             has_match = True
                     if not has_match:
-                        print("FAILED: No match to the expected substring")
+                        print(f"FAILED: expected test {test_def.type}")
                         exit_code += 1
 
                     # Testing Forbidden cases
@@ -40,7 +40,7 @@ if __name__ == "__main__":
                         if test_def.validate(response):
                             has_match = True
                     if has_match:
-                        print("FAILED: Match found in the forbidden substring")
+                        print(f"FAILED: forbidden test {test_def.type}")
                         exit_code += 1
 
     except Exception as e:
