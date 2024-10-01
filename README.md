@@ -61,9 +61,13 @@ ANTHROPIC_API_KEY="Your-Anthropic-api-key-here"
 
 
 ## Step 3: Define models and test cases
-Edit the `config.yaml` file for your Models and Test Cases.
+Edit the [`config.yaml`](config.yaml) file for your Models and Test Cases.
 
-`config.yaml` is self explainatory. There are two sections for the **API Clients** and **Test Cases**.
+> To use other configuration file, you can specify the file's full path in the `GENAI_TEST_CONFIG_FILE`
+> environment variable.
+> Only `yaml` and `json` files are supported.
+
+[`config.yaml`](config.yaml) is self-explanatory. There are two sections for the **API Clients** and **Test Cases**.
 
 ### API Clients
 - `model`: Name of the AI Model
@@ -92,20 +96,38 @@ clients:
 ### Test Cases
 - `name`: The name of the Test Case
 - `prompt`: User prompt for the Test Case
-- `expected_substrings`: Expected text in the response
-- `forbidden_substrings`: Forbidden text in the response
+- `expected`: Expected Test Definitions on the response
+- `forbidden`: Forbidden Test Definitions on the response
+
+#### Test Definitions
+- `type`: Type of test, currently supporting:
+    - `word`: Match a word in the response
+    - `substring`: Match a substring in the response (fastest)
+    - `regex`: Match a regular expression in the response
+- `case_sensitive`: Case sensitive match (default: `false`)
+- `match_all`: Match all of the values (default: `false`)
+- `values`: List of values to match
+- `multiline`: `regex` only. Match across multiple lines (default: `false`)
+- `dotall`: `regex` only. Make the '.' special character match any character at all (default: `false`)
+
 
 #### Example
 ```yaml
 test_cases:
   - name: "Strawberry test"
     prompt: "Count how many Rs are there in the word straberry"
-    expected_substrings:
-      - three
-      - "3"
-    forbidden_substrings:
-      - two
-      - "2"
+    expected:
+      - type: word
+        case_sensitive: false   # Case insensitive match (default)
+        match_all: false        # Match any of the values (default)
+        values:
+          - three
+          - "3"
+    forbidden:
+      - type: word
+        values:
+          - two
+          - "2"
 ```
 
 

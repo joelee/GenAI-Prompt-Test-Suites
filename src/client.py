@@ -1,4 +1,4 @@
-from clients import import_client, ClientResponse
+from clients import ClientResponse, import_client
 
 
 class Client:

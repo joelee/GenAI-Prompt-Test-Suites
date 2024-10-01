@@ -1,8 +1,9 @@
 """
 Abstract base class for all AI clients.
 """
-from abc import ABC, abstractmethod
+
 import time
+from abc import ABC, abstractmethod
 
 
 class ClientResponse:

@@ -1,8 +1,10 @@
 """
 Client for Huggingface models
 """
-from transformers import AutoModelForCausalLM, AutoTokenizer
+
 import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 from clients import BaseClient
 
 
@@ -42,7 +44,7 @@ class HuggingfaceClient(BaseClient):
                 top_p=self.top_p,  # You can adjust these parameters
                 top_k=self.top_k,
                 eos_token_id=self.auto_tokenizer.eos_token_id,
-                pad_token_id=self.auto_tokenizer.eos_token_id
+                pad_token_id=self.auto_tokenizer.eos_token_id,
             )
 
         # Decode the output

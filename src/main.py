@@ -27,8 +27,8 @@ if __name__ == "__main__":
 
                     # Testing Expected cases
                     has_match = False
-                    for case_test in case.expected:
-                        if case_test.validate(response):
+                    for test_def in case.expected:
+                        if test_def.validate(response):
                             has_match = True
                     if not has_match:
                         print("FAILED: No match to the expected substring")
@@ -36,8 +36,8 @@ if __name__ == "__main__":
 
                     # Testing Forbidden cases
                     has_match = False
-                    for case_test in case.forbidden:
-                        if case_test.validate(response):
+                    for test_def in case.forbidden:
+                        if test_def.validate(response):
                             has_match = True
                     if has_match:
                         print("FAILED: Match found in the forbidden substring")

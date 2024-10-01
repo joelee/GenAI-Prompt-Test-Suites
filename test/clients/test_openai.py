@@ -1,5 +1,4 @@
-from clients import import_client
-from clients import OpenaiClient
+from clients import OpenaiClient, import_client
 
 
 def test_load_client():

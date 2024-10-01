@@ -1,12 +1,12 @@
 """
 Client for Amazon Bedrock Runtime
 """
+
 import json
 
 import boto3
 
 from clients import BaseClient
-
 
 
 class BedrockClient(BaseClient):

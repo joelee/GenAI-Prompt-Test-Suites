@@ -1,6 +1,7 @@
 """
 Client for Ollama API
 """
+
 import os
 
 import requests

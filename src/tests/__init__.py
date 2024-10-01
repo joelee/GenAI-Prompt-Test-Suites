@@ -1,15 +1,12 @@
-import importlib.util as _importlib_util
-from os import path
-
-BASE_PATH = path.dirname(path.realpath(__file__))
+from .base_test import BaseTest  # noqa: F401
+from .regex_test import RegexTest  # noqa: F401
+from .substring_test import SubstringTest  # noqa: F401
+from .word_test import WordTest  # noqa: F401
 
 
 def import_test(name):
-    module_file = f"{BASE_PATH}/{name}.py"
-    if not path.isfile(module_file):
-        raise FileNotFoundError(f"Cannot find module file for '{name}'")
-
-    spec = _importlib_util.spec_from_file_location(f"{name.title()}Test", module_file)
-    module = _importlib_util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module.main
+    class_name = f"{name.title()}Test"
+    try:
+        return globals()[class_name]
+    except KeyError as e:
+        raise ImportError(f"Cannot import {class_name}") from e

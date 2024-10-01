@@ -54,12 +54,13 @@ test_cases:
     prompt: "What is the capital of Malaysia?"
     expected:
       - type: substring
-        case_sensitive: true
+        case_sensitive: true      # Case-sensitive matching
         values: Kuala Lumpur
   - name: "Water Cycle Summary"
     prompt: "Summarize the importance of the water cycle."
     expected:
       - type: word
+        match_all: true           # Match all values
         values:
           - "evaporation"
           - "condensation"

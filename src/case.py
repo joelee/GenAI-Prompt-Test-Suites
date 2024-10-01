@@ -16,21 +16,28 @@ class Case:
     @property
     def expected(self):
         tests = self.test_case.get("expected", [])
-        for name in tests:
-            yield CaseTest(name, tests[name])
+        for test in tests:
+            yield TestDef(test)
 
     @property
     def forbidden(self):
         tests = self.test_case.get("forbidden", [])
-        for name in tests:
-            yield CaseTest(name, tests[name])
+        for test in tests:
+            yield TestDef(test)
 
 
-class CaseTest:
-    def __init__(self, name, values):
-        self.name = name
-        self.values = values
-        self.run_test = import_test(name)
+class TestDef:
+    def __init__(self, definition):
+        self._def = definition
+        self.run_test = import_test(self.type)
+
+    @property
+    def type(self):
+        return self._def["type"]
+
+    @property
+    def definition(self):
+        return self._def
 
     def validate(self, response):
-        return self.run_test(response, self.values)
+        return self.run_test(self._def).validate(response)

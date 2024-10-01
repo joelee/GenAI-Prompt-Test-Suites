@@ -1,7 +1,7 @@
+import json
 from os import environ, path
 
 import yaml
-import json
 from case import Case
 from client import Client
 
@@ -12,24 +12,21 @@ class Config:
     def __init__(self):
         file_path = GENAI_TEST_CONFIG_FILE
         if file_path is None:
-            file_path = path.join(
-                self.get_base_dir(),
-                "config.yaml"
-            )
+            file_path = path.join(self.get_base_dir(), "config.yaml")
         self.file_path = file_path
         self._config = None
+        self._ext = None
 
     @property
-    def config(self):
+    def config(self) -> dict:
         if self._config is None:
-            ext = self.file_ext
             with open(self.file_path) as file:
-                if ext == ".json":
+                if self.file_ext == ".json":
                     self._config = json.load(file)
-                elif ext == ".yaml":
+                elif self.file_ext == ".yaml":
                     self._config = yaml.safe_load(file)
                 else:
-                    raise ValueError("Unsupported file type: {ext}")
+                    raise ValueError('Unsupported file type: "{self.file_ext}"')
         return self._config
 
     @property
@@ -44,25 +41,17 @@ class Config:
 
     @property
     def file_ext(self) -> str:
-        return path.splitext(self.file_path)[1].lower()
+        if self._ext is None:
+            ext = path.splitext(self.file_path)[1] or ""
+            self._ext = ext.lower()
+        return self._ext
 
     def to_json(self):
         return json.dumps(self.config, indent=4)
 
     @staticmethod
     def get_base_dir():
-        return path.realpath(
-            path.join(
-                path.dirname(path.realpath(__file__)),
-                ".."
-            )
-        )
-
-    def load_client(self, type, model):
-        for client in self.clients:
-            if client.type == type and client.model == model:
-                return self._load_client(client)
-        return None
+        return path.realpath(path.join(path.dirname(path.realpath(__file__)), ".."))
 
     @staticmethod
     def _load_client(self, client):

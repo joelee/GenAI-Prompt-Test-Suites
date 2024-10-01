@@ -1,5 +1,4 @@
-from clients import import_client
-from clients import BedrockClient
+from clients import BedrockClient, import_client
 
 
 def test_load_client():

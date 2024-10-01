@@ -1,9 +1,11 @@
 """
 Client for OpenAI API
 """
+
 import os
 
 import openai
+
 from clients import BaseClient
 
 

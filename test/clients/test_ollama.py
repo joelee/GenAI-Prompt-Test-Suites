@@ -1,5 +1,4 @@
-from clients import import_client
-from clients import OllamaClient
+from clients import OllamaClient, import_client
 
 
 def test_load_client():

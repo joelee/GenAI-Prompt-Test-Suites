@@ -1,5 +1,4 @@
-from clients import import_client
-from clients import AnthropicClient
+from clients import AnthropicClient, import_client
 
 
 def test_load_client():
