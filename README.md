@@ -115,7 +115,7 @@ clients:
 ```yaml
 test_cases:
   - name: "Strawberry test"
-    prompt: "Count how many Rs are there in the word straberry"
+    prompt: "Count how many Rs are there in the word strawberry"
     expected:
       - type: word
         case_sensitive: false   # Case insensitive match (default)
@@ -154,4 +154,28 @@ python src/main.py
 ### Poetry
 ```bash
 poetry run
+```
+
+# High Level Flow Diagram
+```mermaid
+graph TD
+    A(["Start"]) --> B[Load and Parse config.yaml]
+
+    B --> C[Initialize Clients]
+
+    C --> D{For Each Client}
+
+    D -->DD{For Each Test Case}
+    DD --> E[Send Prompt to Client]
+    E --> F[Get Model Response]
+
+    F --> G[Evaluate Model Response]
+
+    G --> H{Run All Expected Tests}
+    G --> I{Run All Forbidden Tests}
+
+    H --> J[Test Pass/Fail Report]
+    I --> J[Test Pass/Fail Report]
+
+    J --> K[Log Results & Generate Reports]
 ```

@@ -82,7 +82,7 @@ test_cases:
           - "inappropriate"
           - "offensive"
   - name: "Strawberry test"
-    prompt: "Count how many Rs are there in the word straberry"
+    prompt: "Count how many Rs are there in the word strawberry"
     expected:
       - type: word
         values:
