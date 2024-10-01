@@ -1,15 +1,14 @@
-import importlib.util as _importlib_util
-from os import path
-
-BASE_PATH = path.dirname(path.realpath(__file__))
+from .base_client import BaseClient, ClientResponse
+from .openai_client import OpenaiClient
+from .ollama_client import OllamaClient
+from .anthropic_client import AnthropicClient
+from .bedrock_client import BedrockClient
+from .huggingface_client import HuggingfaceClient
 
 
 def import_client(name):
-    module_file = f"{BASE_PATH}/{name}.py"
-    if not path.isfile(module_file):
-        raise FileNotFoundError(f"Cannot find module file for '{name}'")
-
-    spec = _importlib_util.spec_from_file_location(f"{name.title()}Client", module_file)
-    module = _importlib_util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module.main
+    class_name = f"{name.title()}Client"
+    try:
+        return globals()[class_name]
+    except KeyError as e:
+        raise ImportError(f"Cannot import {class_name}") from e

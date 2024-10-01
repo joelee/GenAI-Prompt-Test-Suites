@@ -5,3 +5,6 @@ pyyaml
 pytest
 openai
 requests
+transformers
+torch
+sentencepiece

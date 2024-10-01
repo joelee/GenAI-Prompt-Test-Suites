@@ -35,6 +35,18 @@ clients:
     max_tokens: 500
     temperature: 0.7
     top_p: 0.95
+    disabled: true
+
+  # Hugging Face GPT-2 model
+  - model: gpt2
+    type: huggingface
+    max_tokens: 100
+    temperature: 0.7
+    tokenizer: gpt2
+    device: cpu       # Use 'cuda' for GPU
+    system_prompt: You are a helpful AI assistant.
+    disabled: true
+
 
 # Define your Test Cases here...
 test_cases:
@@ -42,12 +54,13 @@ test_cases:
     prompt: "What is the capital of Malaysia?"
     expected:
       - type: substring
-        value: Kuala Lumpur
+        case_sensitive: true
+        values: Kuala Lumpur
   - name: "Water Cycle Summary"
     prompt: "Summarize the importance of the water cycle."
     expected:
       - type: word
-        value:
+        values:
           - "evaporation"
           - "condensation"
           - "precipitation"
@@ -55,26 +68,27 @@ test_cases:
     prompt: 'Translate the following English text to Italian: "Good morning."'
     expected:
       - type: word
-        value: "Buongiorno"
+        case_sensitive: true
+        values: "Buongiorno"
   - name: "Chicken Joke"
     prompt: "Tell me a joke about chickens."
     expected:
       - type: substring
-        value: "chicken"
+        values: "chicken"
     forbidden:
       - type: substring
-        value:
+        values:
           - "inappropriate"
           - "offensive"
   - name: "Strawberry test"
     prompt: "Count how many Rs are there in the word straberry"
     expected:
       - type: word
-        value:
+        values:
           - three
           - "3"
     forbidden:
       - type: word
-        value:
+        values:
           - two
           - "2"
