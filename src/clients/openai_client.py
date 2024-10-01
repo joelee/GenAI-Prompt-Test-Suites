@@ -4,7 +4,7 @@ Client for OpenAI API
 
 import os
 
-import openai
+from openai import OpenAI
 
 from clients import BaseClient
 
@@ -14,25 +14,28 @@ class OpenaiClient(BaseClient):
         self.api_key = os.environ.get("OPENAI_API_KEY")
         if not self.api_key:
             raise ValueError("OPENAI_API_KEY not set in environment variables")
-        openai.api_key = self.api_key
+        self.client = OpenAI(api_key=self.api_key)
         super().__init__(config)
 
     def request(self, prompt: str) -> str:
         kwargs = {
-            "engine": self.model,
+            "model": self.model,
             "max_tokens": self.max_tokens,
             "temperature": self.temperature,
         }
-        if self.prompt_only:
-            kwargs["prompt"] = self.prefix_system_prompt(prompt)
-        else:
+
+        if self.model.startswith("gpt-") and not self.model.endswith("-instruct"):
             kwargs["messages"] = [
                 {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": prompt},
             ]
+            response = self.client.chat.completions.create(**kwargs)
+            return response.choices[0].message.content.strip()
 
-        response = openai.Completion.create(**kwargs)
-        return response.choices[0].text.strip()
+        else:
+            kwargs["prompt"] = self.prefix_system_prompt(prompt)
+            response = self.client.completions.create(**kwargs)
+            return response.choices[0].text.strip()
 
     @property
     def system_prompt(self) -> str | None:

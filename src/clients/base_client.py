@@ -72,10 +72,6 @@ class BaseClient(ABC):
     def tokenizer(self) -> str | None:
         return self.config.get("tokenizer")
 
-    @property
-    def prompt_only(self) -> bool:
-        return self.config.get("prompt_only", False)
-
     def prefix_system_prompt(self, prompt: str) -> str:
         system_prompt = self.system_prompt
         if system_prompt:

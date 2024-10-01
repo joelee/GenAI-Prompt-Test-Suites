@@ -6,15 +6,16 @@ clients:
   - model: llama2
     type: ollama
 
-  # OpenAI Text Davinci model
-  - model: text-davinci-003
+  # OpenAI GPT 3.5 Turbo Instruct model
+  - model: gpt-3.5-turbo-instruct
     type: openai
     max_tokens: 100
     temperature: 0.0
-    prompt_only: true
+    system_prompt: You are ChatGPT, an AI assistant.
+    disabled: true
 
-  # OpenAI GPT 3.5 Turbo model
-  - model: gpt-3.5-turbo
+  # OpenAI GPT 4o mini model
+  - model: gpt-4o-mini
     type: openai
     max_tokens: 100
     temperature: 0.0
@@ -82,7 +83,7 @@ test_cases:
           - "inappropriate"
           - "offensive"
   - name: "Strawberry test"
-    prompt: "Count how many Rs are there in the word strawberry"
+    prompt: "How many Rs are there in the word strawberry"
     expected:
       - type: word
         values:
