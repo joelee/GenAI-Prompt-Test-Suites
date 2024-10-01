@@ -1,4 +1,4 @@
-from .base_test import BaseTest  # noqa: F401
+from ._base_test import BaseTest  # noqa: F401
 from .regex_test import RegexTest  # noqa: F401
 from .substring_test import SubstringTest  # noqa: F401
 from .word_test import WordTest  # noqa: F401
