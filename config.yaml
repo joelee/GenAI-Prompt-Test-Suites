@@ -94,3 +94,17 @@ test_cases:
         values:
           - two
           - "2"
+  - name: "Largest UK bank note"
+    prompt: "What is the largest bank note in the UK?"
+    expected:
+      - type: llm
+        model: llama2
+        values:
+          - "Fifty pound note"
+    forbidden:
+      - type: llm
+        model: llama2
+        values:
+          - "One thousand pound note"
+          - "£500"
+          - "100 pounds"

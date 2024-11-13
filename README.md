@@ -104,6 +104,8 @@ clients:
     - `word`: Match a word in the response
     - `substring`: Match a substring in the response (fastest)
     - `regex`: Match a regular expression in the response
+    - `llm`: Evaluate response by querying an LLM model
+- `model`: LLM Model to use (Required for `llm` test type)
 - `case_sensitive`: Case sensitive match (default: `false`)
 - `match_all`: Match all of the values (default: `false`)
 - `values`: List of values to match
